@@ -5,14 +5,20 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.Button
+import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-
+    val btnParcelable= findViewById<Button>(R.id.btnParcelable)
+    val edtPara= findViewById<EditText>(R.id.edtPara)
+    val edtAssunto= findViewById<EditText>(R.id.edtAssunto)
+    val btn02= findViewById<Button>(R.id.btn02)
+    val edtMsg= findViewById<EditText>(R.id.edtMsg)
+    val btn01= findViewById<Button>(R.id.btn01)
 
 
     btnParcelable.setOnClickListener(View.OnClickListener {
@@ -34,11 +40,11 @@ class MainActivity : AppCompatActivity() {
 
 
     btn01.setOnClickListener(View.OnClickListener {
-      sendMail()
+      sendMail(edtPara,edtMsg, edtAssunto)
     })
   }
 
-  fun sendMail(){
+  fun sendMail(edtPara: EditText, edtMsg:EditText,edtAssunto:EditText){
     val intent = Intent(Intent.ACTION_SENDTO).apply {
       data = Uri.parse("mailto:")
       putExtra(Intent.EXTRA_EMAIL, edtPara.text.toString())
